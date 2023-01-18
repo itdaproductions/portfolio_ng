@@ -1,11 +1,11 @@
 {
   "component-company-title": "ITDA Productions",
-  "components-nabar-menu-label-home": "Home",
-  "components-nabar-menu-label-design": "Design",
-  "components-nabar-menu-label-digital": "Digital",
-  "components-nabar-menu-label-tradicional": "Tradicional",
-  "components-nabar-menu-label-sculpture": "Sculpture",
-  "components-nabar-menu-label-music": "Music",
-  "components-nabar-menu-label-contacts":"Contacts",
-  "components-nabar-menu-label-portfolio":"Portfolio"
+  "components-navbar-menu-label-home": "Home",
+  "components-navbar-menu-label-design": "Design",
+  "components-navbar-menu-label-digital": "Digital",
+  "components-navbar-menu-label-tradicional": "Tradicional",
+  "components-navbar-menu-label-sculpture": "Sculpture",
+  "components-navbar-menu-label-music": "Music",
+  "components-navbar-menu-label-contacts":"Contacts",
+  "components-navbar-menu-label-portfolio":"Portfolio"
 }
