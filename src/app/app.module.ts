@@ -10,6 +10,7 @@ import {
 } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { PortfolioComponent } from './content/portfolio/portfolio.component';
+import { SharedModule } from './shared/shared.module';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -17,6 +18,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 
 @NgModule({
   declarations: [AppComponent, PortfolioComponent],
+  providers: [],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -28,9 +31,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         deps: [HttpClient],
       },
     }),
+    SharedModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent],
 })
 export class AppModule {
   constructor(translate: TranslateService) {
