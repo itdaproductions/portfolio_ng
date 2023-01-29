@@ -1,12 +1,17 @@
 {
   "component-company-title": "Produções ITDA",
+  "components-navbar-menu-options-language-en-US": "Inglês",
+  "components-navbar-menu-options-language-pt-PT": "Português",
   "components-navbar-menu-label-home": "Home",
   "components-navbar-menu-label-design": "Design",
   "components-navbar-menu-label-digital": "Digital",
   "components-navbar-menu-label-tradicional": "Tradicional",
   "components-navbar-menu-label-sculpture": "Escultura",
   "components-navbar-menu-label-music": "Música",
-  "components-navbar-menu-label-contacts":"Contactos",
-  "components-navbar-menu-label-portfolio":"Portfolio"
-
+  "components-navbar-menu-label-contacts": "Contactos",
+  "components-navbar-menu-label-portfolio": "Portfolio",
+  "components-portfolio-hero-title": "Olá! Sou o Iuri",
+  "components-portfolio-hero-sub-title": "Artista Freelancer",
+  "components-portfolio-hero-description": "Sou um artista autodidata com mais de uma década de experiência em desenho e música, além de alguns anos em vários outros ramos da arte, como design, escrita e escultura.Eu me preocupo principalmente com consistência e clareza como fundações sólidas, a fim de criar facilmente um trabalho mais detalhado e polido.Certifico -me de que a satisfação dos meus clientes seja sempre recebida com o feedback do progresso do trabalho e o que se pode esperar do resultado final.",
+  "components-portfolio-hero-button-label": "Contacta-me"
 }

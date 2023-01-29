@@ -1,11 +1,17 @@
 {
   "component-company-title": "ITDA Productions",
+  "components-navbar-menu-options-language-en-US": "English",
+  "components-navbar-menu-options-language-pt-PT": "Portuguese",
   "components-navbar-menu-label-home": "Home",
   "components-navbar-menu-label-design": "Design",
   "components-navbar-menu-label-digital": "Digital",
   "components-navbar-menu-label-tradicional": "Tradicional",
   "components-navbar-menu-label-sculpture": "Sculpture",
   "components-navbar-menu-label-music": "Music",
-  "components-navbar-menu-label-contacts":"Contacts",
-  "components-navbar-menu-label-portfolio":"Portfolio"
+  "components-navbar-menu-label-contacts": "Contacts",
+  "components-navbar-menu-label-portfolio": "Portfolio",
+  "components-portfolio-hero-title": "Hi! I'm Iuri",
+  "components-portfolio-hero-sub-title": "Freelance Artist",
+  "components-portfolio-hero-description": "I'm a self-taught artist with over a decade of experience in drawing and music as well as a few years in several other branches of art such as design, writing and sculpting. I care primarily about consistency and clarity as solid foundations so as to easily create a more detailed and polished work. I make sure that the satisfaction of my clients are always met with feedback of the work's progress and what can be expected of the end result.",
+  "components-portfolio-hero-button-label": "Contact me"
 }
