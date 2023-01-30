@@ -2,50 +2,34 @@
   <div *ngIf="title" class="card-title p-4">{{ title }}</div>
   <div class="card-body p-4 m-auto max-w-4xl flex">
     <div class="carousel w-full">
-      <div id="slide1" class="carousel-item relative w-full">
+      <div
+        id="{{ 'slide'.concat(i.toString()) }}"
+        *ngFor="let review of reviews; let i = index"
+        class="carousel-item relative w-full"
+      >
         <app-customer-review
           class="flex justify-center p-10 w-full"
-          [name]="'Adriano Andrade'"
-          [quote]="
-            '      One of the most perfectionist artists that I ever had the pleasure to work with. The attention to detail and the quality of the work is second to none.'
-          "
+          [name]="review.name"
+          [quote]="review.quote"
         ></app-customer-review>
         <div
           class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
         >
-          <a href="#slide4" class="btn btn-circle">❮</a>
-          <a href="#slide2" class="btn btn-circle">❯</a>
-        </div>
-      </div>
-      <div id="slide2" class="carousel-item relative w-full">
-        <app-customer-review
-          class="flex justify-center p-10 w-full"
-          [name]="'Tomás Dias'"
-          [quote]="
-            'Not only is he a masterful artist, but also a very deep, cultured, extremely creative, kind and loving person. His works are a peek into his great mind, and it can range from dark and twisted to colorful and epic. He is not afraid to explore the many shades of art, and he always does it with great expertise. Hands down one of the most complete artists I\'ve ever seen.'
-          "
-        ></app-customer-review>
-
-        <div
-          class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-        >
-          <a href="#slide1" class="btn btn-circle">❮</a>
-          <a href="#slide3" class="btn btn-circle">❯</a>
-        </div>
-      </div>
-      <div id="slide3" class="carousel-item relative w-full">
-        <app-customer-review
-          class="flex justify-center p-10 w-full"
-          [name]="'Albertina Freitas'"
-          [quote]="
-            'When I saw the finished piece, I was amazed by it\'s precision, but above all, by the transmission of emotions that only true artists can convey to us.'
-          "
-        ></app-customer-review>
-        <div
-          class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
-        >
-          <a href="#slide2" class="btn btn-circle">❮</a>
-          <a href="#slide1" class="btn btn-circle">❯</a>
+          <a *ngIf="i === 0"></a>
+          <a
+            *ngIf="i !== 0"
+            href="{{ '#slide'.concat((i - 1).toString()) }}"
+            class="btn btn-circle"
+            (click)="setCurrentIndex(i - 1)"
+            >❮</a
+          >
+          <a
+            *ngIf="i !== reviews.length - 1"
+            href="{{ '#slide'.concat((i + 1).toString()) }}"
+            class="btn btn-circle"
+            (click)="setCurrentIndex(i + 1)"
+            >❯</a
+          >
         </div>
       </div>
     </div>
