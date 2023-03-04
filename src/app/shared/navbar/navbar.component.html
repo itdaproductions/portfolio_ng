@@ -3,14 +3,16 @@
 
   <!-- Title -->
   <div class="flex-1">
-    <a class="btn btn-ghost normal-case text-xl">{{ title }}</a>
+    <a [routerLink]="['/']" class="btn btn-ghost normal-case text-xl">{{
+      title
+    }}</a>
   </div>
 
   <!-- Options -->
   <div class="flex-none">
     <ul class="menu menu-horizontal p-0">
       <li tabindex="0">
-        <a>
+        <a [routerLink]="['/portfolio']">
           {{ "components-navbar-menu-label-portfolio" | translate }}
           <svg
             class="fill-current"
@@ -26,24 +28,36 @@
         </a>
         <ul class="p-2 bg-base-100">
           <li>
-            <a>{{ "components-navbar-menu-label-design" | translate }}</a>
+            <a [routerLink]="['/portfolio/design']">{{
+              "components-navbar-menu-label-design" | translate
+            }}</a>
           </li>
           <li>
-            <a>{{ "components-navbar-menu-label-digital" | translate }}</a>
+            <a [routerLink]="['/portfolio/digital']">{{
+              "components-navbar-menu-label-digital" | translate
+            }}</a>
           </li>
           <li>
-            <a>{{ "components-navbar-menu-label-tradicional" | translate }}</a>
+            <a [routerLink]="['/portfolio/tradicional']">{{
+              "components-navbar-menu-label-tradicional" | translate
+            }}</a>
           </li>
           <li>
-            <a>{{ "components-navbar-menu-label-sculpture" | translate }}</a>
+            <a [routerLink]="['/portfolio/sculpture']">{{
+              "components-navbar-menu-label-sculpture" | translate
+            }}</a>
           </li>
           <li>
-            <a>{{ "components-navbar-menu-label-music" | translate }}</a>
+            <a [routerLink]="['/portfolio/music']">{{
+              "components-navbar-menu-label-music" | translate
+            }}</a>
           </li>
         </ul>
       </li>
       <li>
-        <a>{{ "components-navbar-menu-label-contacts" | translate }}</a>
+        <a [routerLink]="['/contacts']">{{
+          "components-navbar-menu-label-contacts" | translate
+        }}</a>
       </li>
     </ul>
   </div>

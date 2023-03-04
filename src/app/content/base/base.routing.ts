@@ -10,9 +10,7 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('../portfolio/portfolio.module').then(
-            (m) => m.PortfolioModule
-          ),
+          import('../main/main.module').then((m) => m.MainModule),
       },
       {
         path: '**',

@@ -9,15 +9,17 @@ import {
   TranslateService,
 } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { PortfolioComponent } from './content/portfolio/portfolio.component';
+import { MainComponent } from './content/main/main.component';
 import { SharedModule } from './shared/shared.module';
+import { PortfolioComponent } from './content/portfolio/portfolio.component';
+import { ContactsComponent } from './content/contacts/contacts.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
 
 @NgModule({
-  declarations: [AppComponent, PortfolioComponent],
+  declarations: [AppComponent, MainComponent, PortfolioComponent, ContactsComponent],
   providers: [],
   bootstrap: [AppComponent],
   imports: [

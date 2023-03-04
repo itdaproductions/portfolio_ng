@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./content/base/base.module').then((m) => m.BaseModule),
   },
+  {
+    path: '**',
+    redirectTo: '/error/404',
+  },
 ];
 
 @NgModule({

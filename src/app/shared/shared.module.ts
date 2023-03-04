@@ -6,6 +6,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CarouselComponent } from './carousel/carousel.component';
 import { CustomerReviewComponent } from './customer-review/customer-review.component';
 import { FooterComponent } from './footer/footer.component';
+import { MediaComponent } from './media/media.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -14,14 +16,16 @@ import { FooterComponent } from './footer/footer.component';
     CarouselComponent,
     CustomerReviewComponent,
     FooterComponent,
+    MediaComponent,
   ],
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, RouterModule],
   exports: [
     NavbarComponent,
     HeroComponent,
     CarouselComponent,
     CustomerReviewComponent,
     FooterComponent,
+    MediaComponent,
   ],
 })
 export class SharedModule {}
