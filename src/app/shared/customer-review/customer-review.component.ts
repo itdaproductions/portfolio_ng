@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CustomerReviewComponent implements OnInit {
   @Input() name: string = '';
   @Input() quote: string = '';
+  @Input() img: string = '';
 
   constructor() {}
 
