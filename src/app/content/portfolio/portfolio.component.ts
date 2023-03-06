@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Media } from 'src/app/shared/media/media.component';
 
 @Component({
@@ -9,14 +10,46 @@ import { Media } from 'src/app/shared/media/media.component';
 export class PortfolioComponent implements OnInit {
   @Input() title: string = 'Categories';
   @Input() medias: Media[] = [
-    { title: 'Design', description: 'test', buttonLabel: 'Check it out' },
-    { title: 'Digital', description: 'test', buttonLabel: 'Check it out' },
-    { title: 'Tradicional', description: 'test', buttonLabel: 'Check it out' },
-    { title: 'Escultura', description: 'test', buttonLabel: 'Check it out' },
-    { title: 'Music', description: 'test', buttonLabel: 'Check it out' },
+    {
+      key: 'design',
+      title: 'Design',
+      description: '',
+      buttonLabel: 'Check it out',
+    },
+    { key: 'digital', title: 'Digital', description: 'test', buttonLabel: '' },
+    {
+      key: 'tradicional',
+      title: 'Tradicional',
+      description: '',
+      buttonLabel: '',
+    },
+    {
+      key: 'sculpture',
+      title: 'Escultura',
+      description: 'test',
+      buttonLabel: 'Check it out',
+    },
+    {
+      key: 'music',
+      title: 'Music',
+      description: 'test',
+      buttonLabel: 'Check it out',
+    },
   ];
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
+
+  onClickedMedia(key: string): void {
+    if (key) {
+      this.router.navigate([this.router.url, `${key}`]);
+    }
+  }
+
+  onClickedButton(key: string): void {
+    if (key) {
+      this.router.navigate([this.router.url, `${key}`]);
+    }
+  }
 }

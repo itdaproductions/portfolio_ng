@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 export interface Media {
-  title: string;
-  description: string;
+  key: string;
+  title?: string;
+  description?: string;
   buttonLabel?: string;
 }
 
@@ -12,11 +13,23 @@ export interface Media {
   styleUrls: ['./media.component.scss'],
 })
 export class MediaComponent implements OnInit {
-  @Input() title: string = '';
-  @Input() description: string = '';
+  @Input() key: string = '';
+  @Input() title: string | undefined = '';
+  @Input() description: string | undefined = '';
   @Input() buttonLabel: string | undefined = '';
+
+  @Output() clickedButton: EventEmitter<string> = new EventEmitter<string>();
+  @Output() clickedMedia: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  onClickMedia(): void {
+    this.clickedMedia.emit(this.key);
+  }
+
+  onClickButton(): void {
+    this.clickedButton.emit(this.key);
+  }
 }

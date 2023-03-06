@@ -14,6 +14,10 @@ const routes: Routes = [
     component: PortfolioComponent,
   },
   {
+    path: 'portfolio/design',
+    component: PortfolioComponent,
+  },
+  {
     path: 'contacts',
     component: ContactsComponent,
   },

@@ -1,12 +1,14 @@
 <div class="card card-compact w-96 bg-base-100 shadow-xl">
-  <figure>
+  <figure class="cursor-pointer" (click)="onClickMedia()">
     <img src="../../../assets/images/1.png" alt="Shoes" />
   </figure>
   <div class="card-body">
     <h2 class="card-title">{{ title }}</h2>
-    <p>{{ description }}</p>
-    <div class="card-actions justify-end">
-      <button *ngIf="buttonLabel" class="btn btn-primary">{{ buttonLabel }}</button>
+    <p *ngIf="description">{{ description }}</p>
+    <div *ngIf="buttonLabel" class="card-actions justify-end">
+      <button class="btn btn-primary" (click)="onClickButton()">
+        {{ buttonLabel + " ❯ " }}
+      </button>
     </div>
   </div>
 </div>
