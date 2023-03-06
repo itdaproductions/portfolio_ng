@@ -1,1 +1,12 @@
-<app-media></app-media>
+<h1 class="card-title">{{ title }}</h1>
+
+<div class="flex justify-center">
+  <div class="flex flex-row gap-8 flex-wrap justify-center">
+    <app-media
+      *ngFor="let media of medias"
+      [title]="media.title"
+      [description]="media.description"
+      [buttonLabel]="media.buttonLabel"
+    ></app-media>
+  </div>
+</div>
