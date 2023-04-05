@@ -22,11 +22,14 @@ export class MediaComponent implements OnInit {
   @Output() clickedButton: EventEmitter<string> = new EventEmitter<string>();
   @Output() clickedMedia: EventEmitter<string> = new EventEmitter<string>();
 
+  modalOpened: boolean = false;
+
   constructor() {}
 
   ngOnInit(): void {}
 
   onClickMedia(): void {
+    this.modalOpened = !this.modalOpened;
     this.clickedMedia.emit(this.key);
   }
 

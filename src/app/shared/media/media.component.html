@@ -1,7 +1,7 @@
 <div class="media-component-wrapper">
   <div class="card card-compact w-96 bg-base-100 shadow-xl">
     <figure class="cursor-pointer" (click)="onClickMedia()">
-      <img src="../../../assets/images/1.png" loading="lazy" alt="Shoes" />
+      <img src="https://picsum.photos/400/100" loading="lazy" alt="Shoes" />
     </figure>
     <div
       class="card-body"
@@ -17,6 +17,24 @@
           {{ buttonLabel + " ❯ " }}
         </button>
       </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="modalOpened" class="modal" [ngClass]="{ modalOpened: modalOpened }">
+  <figure class="cursor-pointer" (click)="onClickMedia()">
+    <img src="https://picsum.photos/1200/900" alt="Shoes" />
+  </figure>
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">Congratulations random Internet user!</h3>
+    <p class="py-4">
+      You've been selected for a chance to get one year of subscription to use
+      Wikipedia for free!
+    </p>
+    <div class="modal-action">
+      <label for="my-modal" class="btn" (click)="modalOpened = !modalOpened"
+        >Yay!</label
+      >
     </div>
   </div>
 </div>
