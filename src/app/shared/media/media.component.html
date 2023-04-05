@@ -1,14 +1,22 @@
-<div class="card card-compact w-96 bg-base-100 shadow-xl">
-  <figure class="cursor-pointer" (click)="onClickMedia()">
-    <img src="../../../assets/images/1.png" alt="Shoes" />
-  </figure>
-  <div class="card-body">
-    <h2 class="card-title">{{ title }}</h2>
-    <p *ngIf="description">{{ description }}</p>
-    <div *ngIf="buttonLabel" class="card-actions justify-end">
-      <button class="btn btn-primary" (click)="onClickButton()">
-        {{ buttonLabel + " ❯ " }}
-      </button>
+<div class="media-component-wrapper">
+  <div class="card card-compact w-96 bg-base-100 shadow-xl">
+    <figure class="cursor-pointer" (click)="onClickMedia()">
+      <img src="../../../assets/images/1.png" loading="lazy" alt="Shoes" />
+    </figure>
+    <div
+      class="card-body"
+      [ngClass]="{
+        showBodyOnHover: showBodyOnHover,
+        'scale-in-ver-bottom': showBodyOnHover
+      }"
+    >
+      <h2 class="card-title">{{ title }}</h2>
+      <p *ngIf="description">{{ description }}</p>
+      <div *ngIf="buttonLabel" class="card-actions justify-end">
+        <button class="btn btn-primary" (click)="onClickButton()">
+          {{ buttonLabel + " ❯ " }}
+        </button>
+      </div>
     </div>
   </div>
 </div>

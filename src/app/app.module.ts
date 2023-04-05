@@ -19,7 +19,12 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent, MainComponent, PortfolioComponent, ContactsComponent],
+  declarations: [
+    AppComponent,
+    MainComponent,
+    PortfolioComponent,
+    ContactsComponent,
+  ],
   providers: [],
   bootstrap: [AppComponent],
   imports: [

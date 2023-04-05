@@ -1,0 +1,14 @@
+<h1 class="card-title">{{ "Design" }}</h1>
+
+<div class="flex justify-center">
+  <div class="flex flex-row gap-8 flex-wrap justify-center">
+    <app-media
+      *ngFor="let media of medias"
+      [key]="media.key"
+      [title]="media.title"
+      [description]="media.description"
+      [buttonLabel]="media.buttonLabel"
+      [showBodyOnHover]="true"
+    ></app-media>
+  </div>
+</div>

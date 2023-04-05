@@ -15,7 +15,28 @@ const routes: Routes = [
   },
   {
     path: 'portfolio/design',
-    component: PortfolioComponent,
+    loadChildren: () =>
+      import('./gallery/gallery.module').then((m) => m.GalleryModule),
+  },
+  {
+    path: 'portfolio/digital',
+    loadChildren: () =>
+      import('./gallery/gallery.module').then((m) => m.GalleryModule),
+  },
+  {
+    path: 'portfolio/tradicional',
+    loadChildren: () =>
+      import('./gallery/gallery.module').then((m) => m.GalleryModule),
+  },
+  {
+    path: 'portfolio/sculpture',
+    loadChildren: () =>
+      import('./gallery/gallery.module').then((m) => m.GalleryModule),
+  },
+  {
+    path: 'portfolio/music',
+    loadChildren: () =>
+      import('./gallery/gallery.module').then((m) => m.GalleryModule),
   },
   {
     path: 'contacts',

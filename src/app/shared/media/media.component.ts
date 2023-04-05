@@ -17,6 +17,7 @@ export class MediaComponent implements OnInit {
   @Input() title: string | undefined = '';
   @Input() description: string | undefined = '';
   @Input() buttonLabel: string | undefined = '';
+  @Input() showBodyOnHover: boolean = false;
 
   @Output() clickedButton: EventEmitter<string> = new EventEmitter<string>();
   @Output() clickedMedia: EventEmitter<string> = new EventEmitter<string>();
