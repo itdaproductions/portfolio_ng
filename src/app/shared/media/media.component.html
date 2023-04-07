@@ -1,7 +1,16 @@
 <div class="media-component-wrapper">
   <div class="card card-compact w-96 bg-base-100 shadow-xl">
-    <figure class="cursor-pointer" (click)="onClickMedia()">
-      <img src="https://picsum.photos/400/100" loading="lazy" alt="Shoes" />
+    <figure class="cursor-pointer relative" (click)="onClickMedia()">
+      <img
+        src="https://picsum.photos/4000/4000"
+        loading="lazy"
+        (load)="onLoadMediaPreview(true)"
+        [alt]="description"
+      />
+      <progress
+        *ngIf="!hadLoadedPreviewMedia"
+        class="progress progress-success min-w-[10rem] max-w-xs absolute top-2/4 left-1/2 transform -translate-x-1/2"
+      ></progress>
     </figure>
     <div
       class="card-body"
@@ -22,19 +31,34 @@
 </div>
 
 <div *ngIf="modalOpened" class="modal" [ngClass]="{ modalOpened: modalOpened }">
-  <figure class="cursor-pointer" (click)="onClickMedia()">
-    <img src="https://picsum.photos/1200/900" alt="Shoes" />
-  </figure>
-  <div class="modal-box">
-    <h3 class="font-bold text-lg">Congratulations random Internet user!</h3>
-    <p class="py-4">
-      You've been selected for a chance to get one year of subscription to use
-      Wikipedia for free!
-    </p>
-    <div class="modal-action">
-      <label for="my-modal" class="btn" (click)="modalOpened = !modalOpened"
-        >Yay!</label
+  <figure class="min-w-min min-h-[10rem] relative" (click)="onClickMedia()">
+    <div
+      *ngIf="!hasLoadedFullMedia"
+      class="flex flex-row gap-4 items-center absolute top-2/4 left-1/2 transform -translate-x-1/2"
+    >
+      <progress
+        class="progress progress-success min-w-[10rem] max-w-xs"
+      ></progress>
+
+      <label class="btn btn-sm btn-circle" (click)="onClickCloseMedia()"
+        >✕</label
       >
     </div>
-  </div>
+
+    <img
+      class="max-w-[95vw] max-h-[95vh] object-cover m-auto"
+      src="https://picsum.photos/3000/4000"
+      [alt]="description"
+      (load)="onLoadFullMedia(true)"
+    />
+
+    <label
+      *ngIf="hasLoadedFullMedia"
+      class="btn btn-sm btn-circle absolute right-2 top-2"
+      (click)="onClickCloseMedia()"
+      >✕</label
+    >
+  </figure>
+
+  <app-alert [description]="'Alerta de teste!'"></app-alert>
 </div>

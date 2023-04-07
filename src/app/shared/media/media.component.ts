@@ -23,13 +23,29 @@ export class MediaComponent implements OnInit {
   @Output() clickedMedia: EventEmitter<string> = new EventEmitter<string>();
 
   modalOpened: boolean = false;
+  hadLoadedPreviewMedia: boolean = false;
+  hasLoadedFullMedia: boolean = false;
 
   constructor() {}
 
   ngOnInit(): void {}
 
+  onLoadMediaPreview(hasLoaded: boolean): void {
+    this.hadLoadedPreviewMedia = hasLoaded;
+  }
+
+  onLoadFullMedia(hasLoaded: boolean): void {
+    this.hasLoadedFullMedia = hasLoaded;
+  }
+
+  onClickCloseMedia(): void {
+    this.modalOpened = !this.modalOpened;
+    this.hasLoadedFullMedia = false;
+  }
+
   onClickMedia(): void {
     this.modalOpened = !this.modalOpened;
+    this.hasLoadedFullMedia = false;
     this.clickedMedia.emit(this.key);
   }
 
