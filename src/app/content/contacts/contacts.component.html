@@ -1,1 +1,107 @@
-<p>contacts works!</p>
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content flex-col gap-8">
+    <div class="flex flex-row self-start">
+      <h1 class="text-5xl font-bold">{{ headerTitle | translate }}</h1>
+    </div>
+
+    <div class="flex flex-col gap-12 lg:flex-row-reverse">
+      <div class="text-center lg:text-left">
+        <p class="py-6">
+          {{ headerMessage | translate }}
+        </p>
+
+        <h3 class="text-3xl font-bold">{{ phone | translate }}</h3>
+        <p class="py-6">{{ phoneNumber | translate }}</p>
+
+        <h3 class="text-3xl font-bold">{{ email | translate }}</h3>
+        <p class="py-6">{{ emailAddress | translate }}</p>
+      </div>
+      <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div class="card-body">
+          <form [formGroup]="contactFormGroup" (ngSubmit)="submit()">
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">{{ subject | translate }}</span>
+              </label>
+              <input
+                type="text"
+                [placeholder]="subjectPlaceholder | translate"
+                class="input input-bordered"
+                id="subject"
+                formControlName="subject"
+                [ngClass]="{
+                  'input-error':
+                    contactFormGroup.controls['subject'].invalid &&
+                    (contactFormGroup.controls['subject'].dirty ||
+                      contactFormGroup.controls['subject'].touched)
+                }"
+              />
+
+              <span
+                *ngIf="
+                  contactFormGroup.controls['subject'].invalid &&
+                  (contactFormGroup.controls['subject'].dirty ||
+                    contactFormGroup.controls['subject'].touched)
+                "
+                class="text-red-600 text-xs"
+              >
+                {{ subjectRequired | translate }}</span
+              >
+            </div>
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">{{ message | translate }}</span>
+              </label>
+
+              <textarea
+                class="textarea textarea-bordered"
+                [placeholder]="messagePlaceholder | translate"
+                id="message"
+                formControlName="message"
+                [ngClass]="{
+                  'textarea-error':
+                    contactFormGroup.controls['message'].invalid &&
+                    (contactFormGroup.controls['message'].dirty ||
+                      contactFormGroup.controls['message'].touched)
+                }"
+              ></textarea>
+
+              <span
+                *ngIf="
+                  contactFormGroup.controls['message'].invalid &&
+                  (contactFormGroup.controls['message'].dirty ||
+                    contactFormGroup.controls['message'].touched)
+                "
+                class="text-red-600 text-xs"
+              >
+                {{ messageRequired | translate }}</span
+              >
+            </div>
+            <div class="form-control mt-6">
+              <button
+                type="submit"
+                class="btn btn-primary p-0"
+                [ngClass]="{ 'btn-disabled': !contactFormGroup.valid }"
+              >
+                <a
+                  class="w-full h-full flex justify-center items-center"
+                  [href]="
+                    'mailto:' +
+                      (emailAddress | translate) +
+                      '?subject=' +
+                      contactFormGroup.controls['subject'].value +
+                      '&body=' +
+                      contactFormGroup.controls['message'].value
+                      | enterToNewLine
+                  "
+                >
+                  {{ sendMessage | translate }}</a
+                >
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
