@@ -13,6 +13,8 @@ import { MainComponent } from './content/main/main.component';
 import { SharedModule } from './shared/shared.module';
 import { PortfolioComponent } from './content/portfolio/portfolio.component';
 import { ContactsComponent } from './content/contacts/contacts.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EnterToNewLinePipe } from './pipes/enterToNewLine.pipe';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -24,6 +26,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MainComponent,
     PortfolioComponent,
     ContactsComponent,
+    EnterToNewLinePipe,
   ],
   providers: [],
   bootstrap: [AppComponent],
@@ -39,12 +42,34 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       },
     }),
     SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class AppModule {
   constructor(translate: TranslateService) {
     translate.addLangs(['en-US', 'pt-PT']);
     translate.setDefaultLang('en-US');
-    translate.use('pt-PT');
+    console.log('Current browser language:', translate.getBrowserCultureLang());
+    this.setLanguageFromCultureBrowserLanguage(translate);
+  }
+
+  private setLanguageFromCultureBrowserLanguage(
+    translate: TranslateService
+  ): void {
+    switch (translate.getBrowserCultureLang()) {
+      case 'pt':
+      case 'pt-PT':
+        translate.use('pt-PT');
+        break;
+
+      case 'en':
+        translate.use('en-US');
+        break;
+
+      default:
+        translate.use('en-US');
+        break;
+    }
   }
 }
