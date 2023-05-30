@@ -8,15 +8,18 @@ import { CustomerReviewComponent } from './customer-review/customer-review.compo
 import { FooterComponent } from './footer/footer.component';
 import { MediaComponent } from './media/media.component';
 import { RouterModule } from '@angular/router';
+import { SocialsComponent } from './socials/socials.component';
 
 @NgModule({
   declarations: [
+    SocialsComponent,
     NavbarComponent,
     HeroComponent,
     CarouselComponent,
     CustomerReviewComponent,
     FooterComponent,
     MediaComponent,
+    SocialsComponent,
   ],
   imports: [CommonModule, TranslateModule, RouterModule],
   exports: [
@@ -26,6 +29,7 @@ import { RouterModule } from '@angular/router';
     CustomerReviewComponent,
     FooterComponent,
     MediaComponent,
+    SocialsComponent,
   ],
 })
 export class SharedModule {}
