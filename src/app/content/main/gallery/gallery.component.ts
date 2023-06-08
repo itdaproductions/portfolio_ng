@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { Media } from 'src/app/shared/media/media.component';
+import { GalleryService } from './gallery.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface Image {
   name: string;
@@ -11,41 +13,53 @@ interface Image {
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.scss'],
+  providers: [GalleryService],
 })
-export class GalleryComponent implements OnInit {
-  @Input() medias: Media[] = [
-    {
-      key: 'design',
-      title: 'Design',
-      description: '',
-      buttonLabel: 'Check it out',
-    },
-    { key: 'digital', title: 'Digital', description: 'test', buttonLabel: '' },
-    {
-      key: 'tradicional',
-      title: 'Tradicional',
-      description: '',
-      buttonLabel: '',
-    },
-    {
-      key: 'sculpture',
-      title: 'Escultura',
-      description: 'test',
-      buttonLabel: 'Check it out',
-    },
-    {
-      key: 'music',
-      title: 'Music',
-      description: 'test',
-      buttonLabel: 'Check it out',
-    },
-  ];
+export class GalleryComponent implements OnInit, OnDestroy {
+  @Input() medias: Media[] = [];
 
   images$: Observable<Image[]> = new Observable<Image[]>();
+  currentGalleryCategory: string = '';
+  galleryTitle: string = '';
+  private routeSub: Subscription = new Subscription();
 
-  constructor() {}
+  constructor(
+    private route: ActivatedRoute,
+    private gallerySvc: GalleryService
+  ) {}
 
   imageUrls: string[] = [];
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.routeSub = this.route.params.subscribe((params) => {
+      this.currentGalleryCategory = params['galleryCategory'];
+    });
+
+    const x = this.gallerySvc.galleryData.subscribe((data) => {
+      if (data?.length > 0) {
+        data.forEach((gallery) => {
+          if (gallery.directoryUrl === this.currentGalleryCategory) {
+            this.galleryTitle = gallery.directoryTitle;
+
+            this.medias = gallery.images.map((image) => {
+              return {
+                key: image.imageUrl,
+                imageUrl:
+                  '../../../assets/gallery/' +
+                  gallery.directoryUrl +
+                  '/' +
+                  image.imageUrl,
+                title: image.imageTitle,
+                description: image.imageDescription,
+              };
+            });
+          }
+        });
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.routeSub.unsubscribe();
+  }
 }

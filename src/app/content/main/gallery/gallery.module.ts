@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { GalleryComponent } from './gallery.component';
 import { GalleryRoutingModule } from './gallery.routing';
 import { SharedModule } from '../../../shared/shared.module';
+import { GalleryCategoryComponent } from './gallery-category/gallery-category.component';
 
 @NgModule({
-  declarations: [GalleryComponent],
+  declarations: [GalleryComponent, GalleryCategoryComponent],
   imports: [CommonModule, GalleryRoutingModule, SharedModule],
 })
 export class GalleryModule {}
