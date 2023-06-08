@@ -11,7 +11,6 @@ import {
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MainComponent } from './content/main/main.component';
 import { SharedModule } from './shared/shared.module';
-import { PortfolioComponent } from './content/portfolio/portfolio.component';
 import { ContactsComponent } from './content/contacts/contacts.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EnterToNewLinePipe } from './pipes/enterToNewLine.pipe';
@@ -24,7 +23,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   declarations: [
     AppComponent,
     MainComponent,
-    PortfolioComponent,
     ContactsComponent,
     EnterToNewLinePipe,
   ],
