@@ -13,6 +13,12 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  onFocus(event: FocusEvent): void {
+    if (event.target instanceof HTMLElement) {
+      event.target.blur();
+    }
+  }
+
   onChangeLanguage(language: string): void {
     switch (language) {
       case 'en-US':
