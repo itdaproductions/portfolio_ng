@@ -2,7 +2,7 @@
   <div class="card card-compact w-96 bg-base-100 shadow-xl">
     <figure class="cursor-pointer relative" (click)="onClickMedia()">
       <img
-        src="https://picsum.photos/4000/4000"
+        [src]="imageUrl"
         loading="lazy"
         (load)="onLoadMediaPreview(true)"
         [alt]="description"
@@ -47,7 +47,7 @@
 
     <img
       class="max-w-[95vw] max-h-[95vh] object-cover m-auto"
-      src="https://picsum.photos/3000/4000"
+      [src]="imageUrl"
       [alt]="description"
       (load)="onLoadFullMedia(true)"
     />

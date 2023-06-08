@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 export interface Media {
   key: string;
+  imageUrl?: string;
   title?: string;
   description?: string;
   buttonLabel?: string;
@@ -14,6 +15,7 @@ export interface Media {
 })
 export class MediaComponent implements OnInit {
   @Input() key: string = '';
+  @Input() imageUrl: string | undefined = '';
   @Input() title: string | undefined = '';
   @Input() description: string | undefined = '';
   @Input() buttonLabel: string | undefined = '';
