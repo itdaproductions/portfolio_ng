@@ -4,11 +4,12 @@
   <div class="flex justify-center">
     <div class="flex flex-row gap-8 flex-wrap justify-center">
       <app-media
-        *ngFor="let media of medias"
-        [key]="media.key"
-        [title]="media.title"
-        [description]="media.description"
-        [buttonLabel]="media.buttonLabel"
+        *ngFor="let media of galleryCategoryData"
+        [key]="media.category.key"
+        [imageUrl]="media.content[0].imageUrl"
+        [title]="media.category.title"
+        [description]="media.category.description"
+        [buttonLabel]="media.category.buttonLabel"
         (clickedMedia)="onClickedMedia($event)"
         (clickedButton)="onClickedButton($event)"
       ></app-media>
