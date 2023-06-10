@@ -26,5 +26,6 @@
   "components-contacts-subject-message": "Message",
   "components-contacts-subject-message-placeholder": "Message",
   "components-contacts-subject-message-required": "Message Required",
-  "components-contacts-send-message": "Send message"
+  "components-contacts-send-message": "Send message",
+  "components-media-error-loading-image": "An error occurred loading this image"
 }

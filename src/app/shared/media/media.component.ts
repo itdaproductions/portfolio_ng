@@ -25,6 +25,7 @@ export class MediaComponent implements OnInit {
   @Output() clickedMedia: EventEmitter<string> = new EventEmitter<string>();
 
   modalOpened: boolean = false;
+  hasErrorLoading: boolean = false;
   hadLoadedPreviewMedia: boolean = false;
   hasLoadedFullMedia: boolean = false;
 
@@ -38,6 +39,10 @@ export class MediaComponent implements OnInit {
 
   onLoadFullMedia(hasLoaded: boolean): void {
     this.hasLoadedFullMedia = hasLoaded;
+  }
+
+  onErrorLoading(error: boolean = false): void {
+    this.hasErrorLoading = error;
   }
 
   onClickCloseMedia(): void {

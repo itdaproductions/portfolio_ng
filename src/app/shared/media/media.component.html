@@ -1,16 +1,24 @@
 <div class="media-component-wrapper">
   <div class="card card-compact w-96 bg-base-100 shadow-xl">
-    <figure class="cursor-pointer relative" (click)="onClickMedia()">
+    <figure
+      class="cursor-pointer relative min-h-[350px]"
+      (click)="onClickMedia()"
+    >
       <img
+        *ngIf="!hasErrorLoading"
         [src]="imageUrl"
         loading="lazy"
         (load)="onLoadMediaPreview(true)"
+        (error)="onErrorLoading(true)"
         [alt]="description"
       />
       <progress
-        *ngIf="!hadLoadedPreviewMedia"
+        *ngIf="!hadLoadedPreviewMedia && !hasErrorLoading"
         class="progress progress-success min-w-[10rem] max-w-xs absolute top-2/4 left-1/2 transform -translate-x-1/2"
       ></progress>
+      <h3 *ngIf="hasErrorLoading">
+        {{ "components-media-error-loading-image" | translate }}
+      </h3>
     </figure>
     <div
       class="card-body"
@@ -50,6 +58,7 @@
       [src]="imageUrl"
       [alt]="description"
       (load)="onLoadFullMedia(true)"
+      (error)="onErrorLoading(true)"
     />
 
     <label

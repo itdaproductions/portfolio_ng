@@ -26,5 +26,6 @@
   "components-contacts-subject-message": "Mensagem",
   "components-contacts-subject-message-placeholder": "Mensagem",
   "components-contacts-subject-message-required": "Mensagem requerida",
-  "components-contacts-send-message": "Enviar mensagem"
+  "components-contacts-send-message": "Enviar mensagem",
+  "components-media-error-loading-image": "Ocorreu um erro ao carregar esta imagem"
 }
