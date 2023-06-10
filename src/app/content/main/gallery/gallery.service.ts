@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map, of } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 export interface GalleryFiles {
   imageUrl: string;
@@ -23,10 +23,29 @@ export class GalleryService {
   private URL = '../../../../assets/gallery/data.json';
 
   get galleryData(): Observable<GalleryData[]> {
-    return this.http.get(this.URL).pipe(
+    return this.http.get<any[]>(this.URL).pipe(
       map((data) => {
-        return data as GalleryData[];
+        return GalleryService.mapFromGalleryResponseToGalleryData(data);
       })
     );
+  }
+
+  static mapFromGalleryResponseToGalleryData(data: any[]): GalleryData[] {
+    return data.map((item: any) => {
+      const galleryData: GalleryData = {
+        directoryUrl: item.directoryUrl,
+        directoryTitle: item.directoryTitle,
+        directoryDescription: item.directoryDescription,
+        images: item.images.map((image: any) => {
+          const galleryFile: GalleryFiles = {
+            imageUrl: image.imageUrl,
+            imageTitle: image.imageTitle,
+            imageDescription: image.imageDescription,
+          };
+          return galleryFile;
+        }),
+      };
+      return galleryData;
+    });
   }
 }

@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Media } from 'src/app/shared/media/media.component';
 import { GalleryService } from './gallery.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 interface Image {
   name: string;
@@ -19,9 +19,11 @@ export class GalleryComponent implements OnInit, OnDestroy {
   @Input() medias: Media[] = [];
 
   images$: Observable<Image[]> = new Observable<Image[]>();
-  currentGalleryCategory: string = '';
+  currentGalleryDirectoryUrl: string = '';
   galleryTitle: string = '';
+
   private routeSub: Subscription = new Subscription();
+  private gallerySub: Subscription = new Subscription();
 
   constructor(
     private route: ActivatedRoute,
@@ -32,13 +34,16 @@ export class GalleryComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe((params) => {
-      this.currentGalleryCategory = params['galleryCategory'];
+      this.currentGalleryDirectoryUrl = params['galleryCategory'];
+      this.updateGalleryData();
     });
+  }
 
-    const x = this.gallerySvc.galleryData.subscribe((data) => {
+  updateGalleryData(): void {
+    this.gallerySub = this.gallerySvc.galleryData.subscribe((data) => {
       if (data?.length > 0) {
         data.forEach((gallery) => {
-          if (gallery.directoryUrl === this.currentGalleryCategory) {
+          if (gallery.directoryUrl === this.currentGalleryDirectoryUrl) {
             this.galleryTitle = gallery.directoryTitle;
 
             this.medias = gallery.images.map((image) => {
@@ -60,6 +65,11 @@ export class GalleryComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.routeSub.unsubscribe();
+    if (this.routeSub) {
+      this.routeSub.unsubscribe();
+    }
+    if (this.gallerySub) {
+      this.gallerySub.unsubscribe();
+    }
   }
 }
