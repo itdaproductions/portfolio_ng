@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 export interface Media {
   key: string;
-  imageUrl?: string;
+  imageUrl: string;
   title?: string;
   description?: string;
   buttonLabel?: string;
@@ -15,14 +15,14 @@ export interface Media {
 })
 export class MediaComponent implements OnInit {
   @Input() key: string = '';
-  @Input() imageUrl: string | undefined = '';
+  @Input() imageUrl: string = '';
   @Input() title: string | undefined = '';
   @Input() description: string | undefined = '';
   @Input() buttonLabel: string | undefined = '';
-  @Input() showBodyOnHover: boolean = false;
+  @Input() showBodyOnHover = false;
 
-  @Output() clickedButton: EventEmitter<string> = new EventEmitter<string>();
-  @Output() clickedMedia: EventEmitter<string> = new EventEmitter<string>();
+  @Output() clickedButton = new EventEmitter<string>();
+  @Output() clickedMedia = new EventEmitter<string>();
 
   modalOpened: boolean = false;
   hasErrorLoading: boolean = false;

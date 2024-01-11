@@ -1,16 +1,16 @@
 <div class="media-component-wrapper">
   <div class="card card-compact w-96 bg-base-100 shadow-xl">
     <figure
-      class="cursor-pointer relative min-h-[350px]"
       (click)="onClickMedia()"
+      class="cursor-pointer relative min-h-[350px]"
     >
       <img
+        (error)="onErrorLoading(true)"
+        (load)="onLoadMediaPreview(true)"
         *ngIf="!hasErrorLoading"
+        [alt]="description"
         [src]="imageUrl"
         loading="lazy"
-        (load)="onLoadMediaPreview(true)"
-        (error)="onErrorLoading(true)"
-        [alt]="description"
       />
       <progress
         *ngIf="!hadLoadedPreviewMedia && !hasErrorLoading"
@@ -21,16 +21,16 @@
       </h3>
     </figure>
     <div
-      class="card-body"
       [ngClass]="{
         showBodyOnHover: showBodyOnHover,
-        'scale-in-ver-bottom': showBodyOnHover
+        'fade-in': showBodyOnHover
       }"
+      class="card card-body glass shadow-none overflow-hidden"
     >
       <h2 class="card-title">{{ title }}</h2>
       <p *ngIf="description">{{ description }}</p>
       <div *ngIf="buttonLabel" class="card-actions justify-end">
-        <button class="btn btn-primary" (click)="onClickButton()">
+        <button (click)="onClickButton()" class="btn btn-primary">
           {{ buttonLabel + " ❯ " }}
         </button>
       </div>
@@ -38,8 +38,8 @@
   </div>
 </div>
 
-<div *ngIf="modalOpened" class="modal" [ngClass]="{ modalOpened: modalOpened }">
-  <figure class="min-w-min min-h-[10rem] relative" (click)="onClickMedia()">
+<div *ngIf="modalOpened" [ngClass]="{ modalOpened: modalOpened }" class="modal">
+  <figure (click)="onClickMedia()" class="min-w-min min-h-[10rem] relative">
     <div
       *ngIf="!hasLoadedFullMedia"
       class="flex flex-row gap-4 items-center absolute top-2/4 left-1/2 transform -translate-x-1/2"
@@ -48,23 +48,23 @@
         class="progress progress-success min-w-[10rem] max-w-xs"
       ></progress>
 
-      <label class="btn btn-sm btn-circle" (click)="onClickCloseMedia()"
+      <label (click)="onClickCloseMedia()" class="btn btn-sm btn-circle"
         >✕</label
       >
     </div>
 
     <img
-      class="max-w-[95vw] max-h-[95vh] object-cover m-auto"
-      [src]="imageUrl"
-      [alt]="description"
-      (load)="onLoadFullMedia(true)"
       (error)="onErrorLoading(true)"
+      (load)="onLoadFullMedia(true)"
+      [alt]="description"
+      [src]="imageUrl"
+      class="max-w-[95vw] max-h-[95vh] object-cover m-auto"
     />
 
     <label
+      (click)="onClickCloseMedia()"
       *ngIf="hasLoadedFullMedia"
       class="btn btn-sm btn-circle absolute right-2 top-2"
-      (click)="onClickCloseMedia()"
       >✕</label
     >
   </figure>

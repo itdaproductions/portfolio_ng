@@ -20,7 +20,10 @@ export class GalleryCategoryComponent implements OnInit {
 
   galleryCategoryData: GalleryCategory[] = [];
 
-  constructor(private router: Router, private gallerySvc: GalleryService) {}
+  constructor(
+    private router: Router,
+    private gallerySvc: GalleryService,
+  ) {}
 
   ngOnInit(): void {
     const x = this.gallerySvc.galleryData.subscribe((data) => {
@@ -31,6 +34,7 @@ export class GalleryCategoryComponent implements OnInit {
               key: gallery.directoryUrl,
               title: gallery.directoryTitle,
               description: gallery.directoryDescription,
+              imageUrl: '',
             },
             content: gallery.images.map((image) => {
               return {
@@ -46,6 +50,8 @@ export class GalleryCategoryComponent implements OnInit {
             }),
           });
         });
+      } else {
+        this.router.navigate([this.router.url, 'error']);
       }
     });
   }

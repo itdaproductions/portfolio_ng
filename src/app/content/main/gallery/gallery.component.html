@@ -1,17 +1,31 @@
 <div class="gallery-wrapper max-w-7xl m-auto">
-  <h1 class="card-title px-6 pb-4">{{ galleryTitle }}</h1>
+  <h1 *ngIf="galleryTitle" class="card-title px-6 pb-4">{{ galleryTitle }}</h1>
 
-  <div class="flex justify-center">
-    <div class="flex flex-row gap-8 flex-wrap justify-center">
+  <div class="flex justify-center my-4">
+    <div
+      *ngIf="medias.length > 0; else empty"
+      class="flex flex-row gap-8 flex-wrap justify-center"
+    >
       <app-media
         *ngFor="let media of medias"
-        [key]="media.key"
-        [imageUrl]="media.imageUrl"
-        [title]="media.title"
-        [description]="media.description"
         [buttonLabel]="media.buttonLabel"
+        [description]="media.description"
+        [imageUrl]="media.imageUrl"
+        [key]="media.key"
         [showBodyOnHover]="true"
+        [title]="media.title"
       ></app-media>
     </div>
+    <ng-template #empty>
+      <div class="hero min-h-[35rem] bg-base-200">
+        <div class="hero-content text-center">
+          <div class="max-w-md">
+            <h1 class="text-xl font-bold">
+              {{ "components-gallery-label-empty" | translate }}
+            </h1>
+          </div>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </div>

@@ -27,10 +27,8 @@ export class GalleryComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private gallerySvc: GalleryService
+    private gallerySvc: GalleryService,
   ) {}
-
-  imageUrls: string[] = [];
 
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe((params) => {
@@ -41,7 +39,10 @@ export class GalleryComponent implements OnInit, OnDestroy {
 
   updateGalleryData(): void {
     this.gallerySub = this.gallerySvc.galleryData.subscribe((data) => {
+      debugger;
       if (data?.length > 0) {
+        this.galleryTitle = '';
+        this.medias = [];
         data.forEach((gallery) => {
           if (gallery.directoryUrl === this.currentGalleryDirectoryUrl) {
             this.galleryTitle = gallery.directoryTitle;
