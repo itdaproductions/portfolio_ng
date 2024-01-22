@@ -1,73 +1,98 @@
-export interface GalleryFiles {
-  imageUrl: string;
-  imageTitle?: string;
-  imageDescription?: string;
-}
-
-export interface GalleryData {
+export type GalleryData = {
   directoryUrl: string;
   directoryTitle: string;
   directoryDescription?: string;
-  images: GalleryFiles[];
-}
+  media: GalleryFiles[];
+};
+
+export type GalleryFiles = {
+  url: string;
+  title?: string;
+  description?: string;
+  type?: 'image' | 'video';
+};
 
 export const PortfolioGallery: GalleryData[] = [
+  {
+    directoryUrl: 'music',
+    directoryTitle: 'data-music-directory-title',
+    directoryDescription: 'data-music-directory-desc',
+    media: [
+      {
+        url: 'https://www.youtube.com/embed/hIrF2mh1g8U',
+        title: 'This is a good title',
+        description: 'A beautiful landscape with mountains',
+        type: 'video',
+      },
+      {
+        url: 'https://www.youtube.com/embed/hIrF2mh1g8U',
+        title: 'This is a good title',
+        description: 'A beautiful landscape with mountains',
+        type: 'video',
+      },
+      {
+        url: '2.png',
+        description: 'A cute kitten playing with a ball of yarn',
+      },
+    ],
+  },
+
   {
     directoryUrl: 'design',
     directoryTitle: 'Design',
     directoryDescription: "They don't suck, I swear",
-    images: [
+    media: [
       {
-        imageUrl: '1.png',
-        imageTitle: 'This is a good title',
-        imageDescription: 'A beautiful landscape with mountains',
+        url: '1.png',
+        title: 'This is a good title',
+        description: 'A beautiful landscape with mountains',
       },
       {
-        imageUrl: '2.png',
-        imageDescription: 'A cute kitten playing with a ball of yarn',
+        url: '2.png',
+        description: 'A cute kitten playing with a ball of yarn',
       },
       {
-        imageUrl: '3.png',
-        imageDescription: 'A delicious plate of spaghetti carbonara',
+        url: '3.png',
+        description: 'A delicious plate of spaghetti carbonara',
       },
       {
-        imageUrl: '1.png',
-        imageTitle: 'This is a good title',
-        imageDescription: 'A beautiful landscape with mountains',
+        url: '1.png',
+        title: 'This is a good title',
+        description: 'A beautiful landscape with mountains',
       },
       {
-        imageUrl: '2.png',
-        imageDescription: 'A cute kitten playing with a ball of yarn',
+        url: '2.png',
+        description: 'A cute kitten playing with a ball of yarn',
       },
       {
-        imageUrl: '3.png',
-        imageDescription: 'A delicious plate of spaghetti carbonara',
+        url: '3.png',
+        description: 'A delicious plate of spaghetti carbonara',
       },
       {
-        imageUrl: '1.png',
-        imageTitle: 'This is a good title',
-        imageDescription: 'A beautiful landscape with mountains',
+        url: '1.png',
+        title: 'This is a good title',
+        description: 'A beautiful landscape with mountains',
       },
       {
-        imageUrl: '2.png',
-        imageDescription: 'A cute kitten playing with a ball of yarn',
+        url: '2.png',
+        description: 'A cute kitten playing with a ball of yarn',
       },
       {
-        imageUrl: '3.png',
-        imageDescription: 'A delicious plate of spaghetti carbonara',
+        url: '3.png',
+        description: 'A delicious plate of spaghetti carbonara',
       },
       {
-        imageUrl: '1.png',
-        imageTitle: 'This is a good title',
-        imageDescription: 'A beautiful landscape with mountains',
+        url: '1.png',
+        title: 'This is a good title',
+        description: 'A beautiful landscape with mountains',
       },
       {
-        imageUrl: '2.png',
-        imageDescription: 'A cute kitten playing with a ball of yarn',
+        url: '2.png',
+        description: 'A cute kitten playing with a ball of yarn',
       },
       {
-        imageUrl: '3.png',
-        imageDescription: 'A delicious plate of spaghetti carbonara',
+        url: '3.png',
+        description: 'A delicious plate of spaghetti carbonara',
       },
     ],
   },
@@ -75,11 +100,11 @@ export const PortfolioGallery: GalleryData[] = [
     directoryUrl: '3d',
     directoryTitle: 'Desenhos 3d',
     directoryDescription: "They don't suck, I swear",
-    images: [
+    media: [
       {
-        imageUrl: '1.png',
-        imageTitle: 'This is a good title',
-        imageDescription: 'A beautiful landscape with mountains',
+        url: '1.png',
+        title: 'This is a good title',
+        description: 'A beautiful landscape with mountains',
       },
     ],
   },
@@ -87,19 +112,19 @@ export const PortfolioGallery: GalleryData[] = [
     directoryUrl: 'tradicional',
     directoryTitle: 'Tradicional',
     directoryDescription: "They don't suck, I swear",
-    images: [
+    media: [
       {
-        imageUrl: '1.png',
-        imageTitle: 'This is a good title',
-        imageDescription: 'A beautiful landscape with mountains',
+        url: '1.png',
+        title: 'This is a good title',
+        description: 'A beautiful landscape with mountains',
       },
       {
-        imageUrl: '2.png',
-        imageDescription: 'A cute kitten playing with a ball of yarn',
+        url: '2.png',
+        description: 'A cute kitten playing with a ball of yarn',
       },
       {
-        imageUrl: '3.png',
-        imageDescription: 'A delicious plate of spaghetti carbonara',
+        url: '3.png',
+        description: 'A delicious plate of spaghetti carbonara',
       },
     ],
   },
@@ -107,19 +132,19 @@ export const PortfolioGallery: GalleryData[] = [
     directoryUrl: 'sculpture',
     directoryTitle: 'Sculpture',
     directoryDescription: "They don't suck, I swear",
-    images: [
+    media: [
       {
-        imageUrl: '1.png',
-        imageTitle: 'This is a good title',
-        imageDescription: 'A beautiful landscape with mountains',
+        url: '1.png',
+        title: 'This is a good title',
+        description: 'A beautiful landscape with mountains',
       },
       {
-        imageUrl: '2.png',
-        imageDescription: 'A cute kitten playing with a ball of yarn',
+        url: '2.png',
+        description: 'A cute kitten playing with a ball of yarn',
       },
       {
-        imageUrl: '3.png',
-        imageDescription: 'A delicious plate of spaghetti carbonara',
+        url: '3.png',
+        description: 'A delicious plate of spaghetti carbonara',
       },
     ],
   },

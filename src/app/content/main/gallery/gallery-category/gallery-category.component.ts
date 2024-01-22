@@ -31,21 +31,23 @@ export class GalleryCategoryComponent implements OnInit {
         data.forEach((gallery) => {
           this.galleryCategoryData.push({
             category: {
-              key: gallery.directoryUrl,
+              id: gallery.directoryUrl,
               title: gallery.directoryTitle,
               description: gallery.directoryDescription,
-              imageUrl: '',
+              url: '',
             },
-            content: gallery.images.map((image) => {
+            content: gallery.media.map((image) => {
               return {
-                key: image.imageUrl,
-                imageUrl:
-                  '../../../assets/gallery/' +
-                  gallery.directoryUrl +
-                  '/' +
-                  image.imageUrl,
-                title: image.imageTitle,
-                description: image.imageDescription,
+                id: image.url,
+                url:
+                  image.type === 'video'
+                    ? image.url
+                    : '../../../assets/gallery/' +
+                      gallery.directoryUrl +
+                      '/' +
+                      image.url,
+                title: image.title,
+                description: image.description,
               };
             }),
           });

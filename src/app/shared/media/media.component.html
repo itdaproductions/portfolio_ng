@@ -1,34 +1,49 @@
 <div class="media-component-wrapper">
-  <div class="card card-compact w-96 bg-base-100 shadow-xl">
+  <div
+    [ngClass]="[type === 'image' ? 'min-w-[350px]' : 'min-w-[600px]']"
+    class="card card-compact max-w-prose bg-base-100 shadow-xl"
+  >
     <figure
       (click)="onClickMedia()"
-      class="cursor-pointer relative min-h-[350px]"
+      class="card card-body cursor-pointer relative min-h-[350px]"
     >
-      <img
-        (error)="onErrorLoading(true)"
-        (load)="onLoadMediaPreview(true)"
-        *ngIf="!hasErrorLoading"
-        [alt]="description"
-        [src]="imageUrl"
-        loading="lazy"
-      />
-      <progress
-        *ngIf="!hadLoadedPreviewMedia && !hasErrorLoading"
-        class="progress progress-success min-w-[10rem] max-w-xs absolute top-2/4 left-1/2 transform -translate-x-1/2"
-      ></progress>
-      <h3 *ngIf="hasErrorLoading">
-        {{ "components-media-error-loading-image" | translate }}
-      </h3>
+      <ng-container *ngIf="type === 'video'; else image">
+        <iframe
+          [src]="safeURL"
+          allowfullscreen
+          height="400"
+          width="100%"
+        ></iframe>
+      </ng-container>
+      <ng-template #image>
+        <img
+          (error)="onErrorLoading(true)"
+          (load)="onLoadMediaPreview(true)"
+          *ngIf="!hasErrorLoading"
+          [alt]="description ? (description | translate) : ''"
+          [src]="safeURL"
+          loading="lazy"
+        />
+        <progress
+          *ngIf="!hadLoadedPreviewMedia && !hasErrorLoading"
+          class="progress progress-success min-w-[10rem] max-w-xs absolute top-2/4 left-1/2 transform -translate-x-1/2"
+        ></progress>
+        <h3 *ngIf="hasErrorLoading">
+          {{ "components-media-error-loading-image" | translate }}
+        </h3>
+      </ng-template>
     </figure>
     <div
       [ngClass]="{
-        showBodyOnHover: showBodyOnHover,
+        showBodyOnHover: showBodyOnHover && type === 'image',
         'fade-in': showBodyOnHover
       }"
-      class="card card-body glass shadow-none overflow-hidden"
+      class="card card-body shadow-none overflow-hidden"
     >
-      <h2 class="card-title">{{ title }}</h2>
-      <p *ngIf="description">{{ description }}</p>
+      <h2 class="card-title">{{ title ? (title | translate) : "" }}</h2>
+      <p *ngIf="description">
+        {{ description ? (description | translate) : "" }}
+      </p>
       <div *ngIf="buttonLabel" class="card-actions justify-end">
         <button (click)="onClickButton()" class="btn btn-primary">
           {{ buttonLabel + " ❯ " }}
@@ -38,8 +53,12 @@
   </div>
 </div>
 
-<div *ngIf="modalOpened" [ngClass]="{ modalOpened: modalOpened }" class="modal">
-  <figure (click)="onClickMedia()" class="min-w-min min-h-[10rem] relative">
+<dialog
+  *ngIf="modalOpened && type === 'image'"
+  [open]="modalOpened"
+  class="modal"
+>
+  <figure class="min-w-min min-h-[10rem] relative">
     <div
       *ngIf="!hasLoadedFullMedia"
       class="flex flex-row gap-4 items-center absolute top-2/4 left-1/2 transform -translate-x-1/2"
@@ -57,8 +76,9 @@
       (error)="onErrorLoading(true)"
       (load)="onLoadFullMedia(true)"
       [alt]="description"
-      [src]="imageUrl"
+      [src]="safeURL"
       class="max-w-[95vw] max-h-[95vh] object-cover m-auto"
+      fill
     />
 
     <label
@@ -68,4 +88,4 @@
       >✕</label
     >
   </figure>
-</div>
+</dialog>

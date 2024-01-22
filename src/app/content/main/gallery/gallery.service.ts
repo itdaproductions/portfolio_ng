@@ -1,11 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
-import {
-  GalleryData,
-  GalleryFiles,
-  PortfolioGallery,
-} from '../../../../assets/gallery/data';
+import { GalleryData, PortfolioGallery } from '../../../../assets/gallery/data';
 
 @Injectable({
   providedIn: 'root',
@@ -21,22 +17,23 @@ export class GalleryService {
     );
   }
 
-  static mapFromGalleryResponseToGalleryData(data: any[]): GalleryData[] {
-    return data.map((item: any) => {
-      const galleryData: GalleryData = {
+  static mapFromGalleryResponseToGalleryData(
+    data: GalleryData[],
+  ): GalleryData[] {
+    return data.map((item) => {
+      return {
         directoryUrl: item.directoryUrl,
         directoryTitle: item.directoryTitle,
         directoryDescription: item.directoryDescription,
-        images: item.images.map((image: any) => {
-          const galleryFile: GalleryFiles = {
-            imageUrl: image.imageUrl,
-            imageTitle: image.imageTitle,
-            imageDescription: image.imageDescription,
+        media: item.media.map((media) => {
+          return {
+            url: media.url,
+            title: media.title,
+            description: media.description,
+            type: media.type,
           };
-          return galleryFile;
         }),
       };
-      return galleryData;
     });
   }
 }

@@ -45,28 +45,31 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   ],
 })
 export class AppModule {
-  constructor(translate: TranslateService) {
-    translate.addLangs(['en-US', 'pt-PT']);
-    translate.setDefaultLang('en-US');
-    console.log('Current browser language:', translate.getBrowserCultureLang());
-    this.setLanguageFromCultureBrowserLanguage(translate);
+  constructor(translateSvc: TranslateService) {
+    translateSvc.addLangs(['en-US', 'pt-PT']);
+    translateSvc.setDefaultLang('en-US');
+    console.log(
+      'Current browser language:',
+      translateSvc.getBrowserCultureLang(),
+    );
+    this.setLanguageFromCultureBrowserLanguage(translateSvc);
   }
 
   private setLanguageFromCultureBrowserLanguage(
-    translate: TranslateService
+    translateSvc: TranslateService,
   ): void {
-    switch (translate.getBrowserCultureLang()) {
+    switch (translateSvc.getBrowserCultureLang()) {
       case 'pt':
       case 'pt-PT':
-        translate.use('pt-PT');
+        translateSvc.use('pt-PT');
         break;
 
       case 'en':
-        translate.use('en-US');
+        translateSvc.use('en-US');
         break;
 
       default:
-        translate.use('en-US');
+        translateSvc.use('en-US');
         break;
     }
   }

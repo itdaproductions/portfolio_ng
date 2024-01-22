@@ -24,7 +24,6 @@ export class HeaderComponent implements OnInit {
     const x = this.gallerySvc.galleryData.subscribe((data) => {
       if (data?.length > 0) {
         data.forEach((gallery) => {
-          debugger;
           this.navbarMenuData[0].items.push({
             label: gallery.directoryTitle,
             url: 'gallery/' + gallery.directoryUrl,

@@ -1,5 +1,5 @@
 <div class="portfolio-wrapper max-w-7xl m-auto">
-  <h1 class="card-title px-6 pb-4">{{ title }}</h1>
+  <h1 class="card-title px-6 pb-4">{{ title | translate }}</h1>
 
   <div class="flex justify-center my-4">
     <div class="flex flex-row gap-8 flex-wrap justify-center">
@@ -9,9 +9,9 @@
         *ngFor="let media of galleryCategoryData"
         [buttonLabel]="media.category.buttonLabel"
         [description]="media.category.description"
-        [imageUrl]="media.content[0].imageUrl"
-        [key]="media.category.key"
+        [id]="media.category.id"
         [title]="media.category.title"
+        [url]="media.content[0].url"
       ></app-media>
     </div>
   </div>

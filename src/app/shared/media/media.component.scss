@@ -1,4 +1,8 @@
 .media-component-wrapper {
+  .card {
+    border-radius: 16px;
+  }
+
   .card-body.showBodyOnHover {
     position: absolute;
     background-color: white;
@@ -12,7 +16,8 @@
 
   &:hover {
     .card-body.showBodyOnHover.fade-in {
-      opacity: 0.9;
+      opacity: 0.8;
+
       transition: opacity 0.2s ease-in-out;
       -moz-transition: opacity 0.2s ease-in-out;
       -webkit-transition: opacity 0.2s ease-in-out;

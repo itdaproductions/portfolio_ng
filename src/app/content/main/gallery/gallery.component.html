@@ -1,5 +1,7 @@
 <div class="gallery-wrapper max-w-7xl m-auto">
-  <h1 *ngIf="galleryTitle" class="card-title px-6 pb-4">{{ galleryTitle }}</h1>
+  <h1 *ngIf="galleryTitle" class="card-title px-6 pb-4">
+    {{ galleryTitle | translate }}
+  </h1>
 
   <div class="flex justify-center my-4">
     <div
@@ -10,10 +12,11 @@
         *ngFor="let media of medias"
         [buttonLabel]="media.buttonLabel"
         [description]="media.description"
-        [imageUrl]="media.imageUrl"
-        [key]="media.key"
+        [id]="media.id"
         [showBodyOnHover]="true"
         [title]="media.title"
+        [type]="media.type ? media.type : 'image'"
+        [url]="media.url"
       ></app-media>
     </div>
     <ng-template #empty>

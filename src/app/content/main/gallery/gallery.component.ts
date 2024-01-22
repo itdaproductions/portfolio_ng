@@ -39,7 +39,6 @@ export class GalleryComponent implements OnInit, OnDestroy {
 
   updateGalleryData(): void {
     this.gallerySub = this.gallerySvc.galleryData.subscribe((data) => {
-      debugger;
       if (data?.length > 0) {
         this.galleryTitle = '';
         this.medias = [];
@@ -47,16 +46,19 @@ export class GalleryComponent implements OnInit, OnDestroy {
           if (gallery.directoryUrl === this.currentGalleryDirectoryUrl) {
             this.galleryTitle = gallery.directoryTitle;
 
-            this.medias = gallery.images.map((image) => {
+            this.medias = gallery.media.map((media) => {
               return {
-                key: image.imageUrl,
-                imageUrl:
-                  '../../../assets/gallery/' +
-                  gallery.directoryUrl +
-                  '/' +
-                  image.imageUrl,
-                title: image.imageTitle,
-                description: image.imageDescription,
+                id: media.url,
+                url:
+                  media.type === 'video'
+                    ? media.url
+                    : '../../../assets/gallery/' +
+                      gallery.directoryUrl +
+                      '/' +
+                      media.url,
+                title: media.title,
+                description: media.description,
+                type: media.type,
               };
             });
           }
