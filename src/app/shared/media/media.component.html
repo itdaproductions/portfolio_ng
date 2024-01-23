@@ -1,28 +1,51 @@
 <div class="media-component-wrapper">
-  <div class="card card-compact w-96 bg-base-100 shadow-xl">
-    <figure class="cursor-pointer relative" (click)="onClickMedia()">
-      <img
-        src="https://picsum.photos/4000/4000"
-        loading="lazy"
-        (load)="onLoadMediaPreview(true)"
-        [alt]="description"
-      />
-      <progress
-        *ngIf="!hadLoadedPreviewMedia"
-        class="progress progress-success min-w-[10rem] max-w-xs absolute top-2/4 left-1/2 transform -translate-x-1/2"
-      ></progress>
+  <div
+    [ngClass]="[type === 'image' ? 'min-w-[350px]' : 'min-w-[600px]']"
+    class="card card-compact max-w-prose bg-base-100 shadow-xl"
+  >
+    <figure
+      (click)="onClickMedia()"
+      class="card card-body cursor-pointer relative min-h-[350px]"
+    >
+      <ng-container *ngIf="type === 'video'; else image">
+        <iframe
+          [src]="safeURL"
+          allowfullscreen
+          height="400"
+          width="100%"
+        ></iframe>
+      </ng-container>
+      <ng-template #image>
+        <img
+          (error)="onErrorLoading(true)"
+          (load)="onLoadMediaPreview(true)"
+          *ngIf="!hasErrorLoading"
+          [alt]="description ? (description | translate) : ''"
+          [src]="safeURL"
+          loading="lazy"
+        />
+        <progress
+          *ngIf="!hadLoadedPreviewMedia && !hasErrorLoading"
+          class="progress progress-success min-w-[10rem] max-w-xs absolute top-2/4 left-1/2 transform -translate-x-1/2"
+        ></progress>
+        <h3 *ngIf="hasErrorLoading">
+          {{ "components-media-error-loading-image" | translate }}
+        </h3>
+      </ng-template>
     </figure>
     <div
-      class="card-body"
       [ngClass]="{
-        showBodyOnHover: showBodyOnHover,
-        'scale-in-ver-bottom': showBodyOnHover
+        showBodyOnHover: showBodyOnHover && type === 'image',
+        'fade-in': showBodyOnHover
       }"
+      class="card card-body shadow-none overflow-hidden"
     >
-      <h2 class="card-title">{{ title }}</h2>
-      <p *ngIf="description">{{ description }}</p>
+      <h2 class="card-title">{{ title ? (title | translate) : "" }}</h2>
+      <p *ngIf="description">
+        {{ description ? (description | translate) : "" }}
+      </p>
       <div *ngIf="buttonLabel" class="card-actions justify-end">
-        <button class="btn btn-primary" (click)="onClickButton()">
+        <button (click)="onClickButton()" class="btn btn-primary">
           {{ buttonLabel + " ❯ " }}
         </button>
       </div>
@@ -30,8 +53,12 @@
   </div>
 </div>
 
-<div *ngIf="modalOpened" class="modal" [ngClass]="{ modalOpened: modalOpened }">
-  <figure class="min-w-min min-h-[10rem] relative" (click)="onClickMedia()">
+<dialog
+  *ngIf="modalOpened && type === 'image'"
+  [open]="modalOpened"
+  class="modal"
+>
+  <figure class="min-w-min min-h-[10rem] relative">
     <div
       *ngIf="!hasLoadedFullMedia"
       class="flex flex-row gap-4 items-center absolute top-2/4 left-1/2 transform -translate-x-1/2"
@@ -40,23 +67,25 @@
         class="progress progress-success min-w-[10rem] max-w-xs"
       ></progress>
 
-      <label class="btn btn-sm btn-circle" (click)="onClickCloseMedia()"
+      <label (click)="onClickCloseMedia()" class="btn btn-sm btn-circle"
         >✕</label
       >
     </div>
 
     <img
-      class="max-w-[95vw] max-h-[95vh] object-cover m-auto"
-      src="https://picsum.photos/3000/4000"
-      [alt]="description"
+      (error)="onErrorLoading(true)"
       (load)="onLoadFullMedia(true)"
+      [alt]="description"
+      [src]="safeURL"
+      class="max-w-[95vw] max-h-[95vh] object-cover m-auto"
+      fill
     />
 
     <label
+      (click)="onClickCloseMedia()"
       *ngIf="hasLoadedFullMedia"
       class="btn btn-sm btn-circle absolute right-2 top-2"
-      (click)="onClickCloseMedia()"
       >✕</label
     >
   </figure>
-</div>
+</dialog>

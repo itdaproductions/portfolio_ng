@@ -1,6 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
+export interface NavbarMenuItem {
+  label: string;
+  url: string;
+}
+
+export interface NavbarMenu {
+  label: string;
+  url?: string;
+  items: NavbarMenuItem[];
+}
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -8,10 +19,17 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class NavbarComponent implements OnInit {
   @Input() title: string = 'title';
+  @Input() menu: NavbarMenu[] | null = [];
 
   constructor(private translationSvc: TranslateService) {}
 
   ngOnInit(): void {}
+
+  onFocus(event: FocusEvent): void {
+    if (event.target instanceof HTMLElement) {
+      event.target.blur();
+    }
+  }
 
   onChangeLanguage(language: string): void {
     switch (language) {

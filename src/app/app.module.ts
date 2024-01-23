@@ -11,7 +11,6 @@ import {
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MainComponent } from './content/main/main.component';
 import { SharedModule } from './shared/shared.module';
-import { PortfolioComponent } from './content/portfolio/portfolio.component';
 import { ContactsComponent } from './content/contacts/contacts.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EnterToNewLinePipe } from './pipes/enterToNewLine.pipe';
@@ -24,7 +23,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   declarations: [
     AppComponent,
     MainComponent,
-    PortfolioComponent,
     ContactsComponent,
     EnterToNewLinePipe,
   ],
@@ -47,28 +45,31 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   ],
 })
 export class AppModule {
-  constructor(translate: TranslateService) {
-    translate.addLangs(['en-US', 'pt-PT']);
-    translate.setDefaultLang('en-US');
-    console.log('Current browser language:', translate.getBrowserCultureLang());
-    this.setLanguageFromCultureBrowserLanguage(translate);
+  constructor(translateSvc: TranslateService) {
+    translateSvc.addLangs(['en-US', 'pt-PT']);
+    translateSvc.setDefaultLang('en-US');
+    console.log(
+      'Current browser language:',
+      translateSvc.getBrowserCultureLang(),
+    );
+    this.setLanguageFromCultureBrowserLanguage(translateSvc);
   }
 
   private setLanguageFromCultureBrowserLanguage(
-    translate: TranslateService
+    translateSvc: TranslateService,
   ): void {
-    switch (translate.getBrowserCultureLang()) {
+    switch (translateSvc.getBrowserCultureLang()) {
       case 'pt':
       case 'pt-PT':
-        translate.use('pt-PT');
+        translateSvc.use('pt-PT');
         break;
 
       case 'en':
-        translate.use('en-US');
+        translateSvc.use('en-US');
         break;
 
       default:
-        translate.use('en-US');
+        translateSvc.use('en-US');
         break;
     }
   }

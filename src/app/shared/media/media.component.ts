@@ -1,11 +1,16 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 export interface Media {
-  key: string;
+  id: string;
+  url: string;
   title?: string;
   description?: string;
   buttonLabel?: string;
+  type?: MediaType;
 }
+
+export type MediaType = 'image' | 'video';
 
 @Component({
   selector: 'app-media',
@@ -13,22 +18,28 @@ export interface Media {
   styleUrls: ['./media.component.scss'],
 })
 export class MediaComponent implements OnInit {
-  @Input() key: string = '';
+  @Input() id: string = '';
+  @Input() url: string = '';
   @Input() title: string | undefined = '';
   @Input() description: string | undefined = '';
   @Input() buttonLabel: string | undefined = '';
-  @Input() showBodyOnHover: boolean = false;
+  @Input() showBodyOnHover = false;
+  @Input() type: MediaType = 'image';
 
-  @Output() clickedButton: EventEmitter<string> = new EventEmitter<string>();
-  @Output() clickedMedia: EventEmitter<string> = new EventEmitter<string>();
+  @Output() clickedButton = new EventEmitter<string>();
+  @Output() clickedMedia = new EventEmitter<string>();
 
-  modalOpened: boolean = false;
-  hadLoadedPreviewMedia: boolean = false;
-  hasLoadedFullMedia: boolean = false;
+  modalOpened = false;
+  hasErrorLoading = false;
+  hadLoadedPreviewMedia = false;
+  hasLoadedFullMedia = false;
+  safeURL: SafeResourceUrl | undefined;
 
-  constructor() {}
+  constructor(private _sanitizer: DomSanitizer) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.safeURL = this._sanitizer.bypassSecurityTrustResourceUrl(this.url);
+  }
 
   onLoadMediaPreview(hasLoaded: boolean): void {
     this.hadLoadedPreviewMedia = hasLoaded;
@@ -38,18 +49,21 @@ export class MediaComponent implements OnInit {
     this.hasLoadedFullMedia = hasLoaded;
   }
 
+  onErrorLoading(error: boolean = false): void {
+    this.hasErrorLoading = error;
+  }
+
   onClickCloseMedia(): void {
     this.modalOpened = !this.modalOpened;
-    this.hasLoadedFullMedia = false;
   }
 
   onClickMedia(): void {
     this.modalOpened = !this.modalOpened;
     this.hasLoadedFullMedia = false;
-    this.clickedMedia.emit(this.key);
+    this.clickedMedia.emit(this.id);
   }
 
   onClickButton(): void {
-    this.clickedButton.emit(this.key);
+    this.clickedButton.emit(this.id);
   }
 }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HeroComponent } from './hero/hero.component';
 import { TranslateModule } from '@ngx-translate/core';
@@ -21,7 +21,7 @@ import { SocialsComponent } from './socials/socials.component';
     MediaComponent,
     SocialsComponent,
   ],
-  imports: [CommonModule, TranslateModule, RouterModule],
+  imports: [CommonModule, TranslateModule, RouterModule, NgOptimizedImage],
   exports: [
     NavbarComponent,
     HeroComponent,
