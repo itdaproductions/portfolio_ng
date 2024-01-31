@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { BaseService } from '../../content/base/base.service';
 
 export interface NavbarMenuItem {
   label: string;
@@ -21,7 +22,12 @@ export class NavbarComponent implements OnInit {
   @Input() title: string = 'title';
   @Input() menu: NavbarMenu[] | null = [];
 
-  constructor(private translationSvc: TranslateService) {}
+  currentLanguage = this.translationSvc.currentLang;
+
+  constructor(
+    private translationSvc: TranslateService,
+    private baseService: BaseService,
+  ) {}
 
   ngOnInit(): void {}
 
@@ -43,5 +49,10 @@ export class NavbarComponent implements OnInit {
         this.translationSvc.use('en-US');
         break;
     }
+  }
+
+  onChangeTheme() {
+    this.baseService.switchCurrentTheme('dark');
+    debugger;
   }
 }

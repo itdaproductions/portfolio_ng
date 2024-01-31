@@ -11,7 +11,7 @@
         [description]="media.category.description"
         [id]="media.category.id"
         [title]="media.category.title"
-        [url]="media.content[0].url"
+        [url]="media.content[0]?.url || ''"
       ></app-media>
     </div>
   </div>

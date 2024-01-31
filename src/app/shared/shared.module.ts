@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MediaComponent } from './media/media.component';
 import { RouterModule } from '@angular/router';
 import { SocialsComponent } from './socials/socials.component';
+import { ButtonComponent } from './standalone/button/button.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,13 @@ import { SocialsComponent } from './socials/socials.component';
     MediaComponent,
     SocialsComponent,
   ],
-  imports: [CommonModule, TranslateModule, RouterModule, NgOptimizedImage],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    RouterModule,
+    NgOptimizedImage,
+    ButtonComponent,
+  ],
   exports: [
     NavbarComponent,
     HeroComponent,
