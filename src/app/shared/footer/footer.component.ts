@@ -18,6 +18,9 @@ export class FooterComponent implements OnInit {
       link: 'https://github.com/adrianooandrade',
     },
   ];
+
+  version = '';
+
   constructor() {}
 
   ngOnInit(): void {}
