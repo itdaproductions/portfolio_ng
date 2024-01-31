@@ -8,6 +8,7 @@ export interface Media {
   description?: string;
   buttonLabel?: string;
   type?: MediaType;
+  displayMedia?: boolean;
 }
 
 export type MediaType = 'image' | 'video';
@@ -25,6 +26,7 @@ export class MediaComponent implements OnInit {
   @Input() buttonLabel: string | undefined = '';
   @Input() showBodyOnHover = false;
   @Input() type: MediaType = 'image';
+  @Input() displayMedia: boolean | undefined = true;
 
   @Output() clickedButton = new EventEmitter<string>();
   @Output() clickedMedia = new EventEmitter<string>();

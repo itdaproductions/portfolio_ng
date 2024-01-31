@@ -11,30 +11,49 @@
       (click)="onClickMedia()"
       class="card card-body cursor-pointer relative"
     >
-      <ng-container *ngIf="type === 'video'; else image">
-        <iframe
-          [src]="safeURL"
-          allowfullscreen
-          height="400"
-          width="100%"
-        ></iframe>
+      <ng-container *ngIf="displayMedia; else empty">
+        <ng-container *ngIf="type === 'video'; else image">
+          <iframe
+            [src]="safeURL"
+            allowfullscreen
+            height="400"
+            width="100%"
+          ></iframe>
+        </ng-container>
+        <ng-template #image>
+          <img
+            (error)="onErrorLoading(true)"
+            (load)="onLoadMediaPreview(true)"
+            *ngIf="!hasErrorLoading"
+            [alt]="description ? (description | translate) : ''"
+            [src]="safeURL"
+            loading="lazy"
+          />
+          <progress
+            *ngIf="!hadLoadedPreviewMedia && !hasErrorLoading"
+            class="progress progress-success min-w-[10rem] max-w-xs absolute top-2/4 left-1/2 transform -translate-x-1/2"
+          ></progress>
+          <h3 *ngIf="hasErrorLoading">
+            {{ "components-media-error-loading-media" | translate }}
+          </h3>
+        </ng-template>
       </ng-container>
-      <ng-template #image>
-        <img
-          (error)="onErrorLoading(true)"
-          (load)="onLoadMediaPreview(true)"
-          *ngIf="!hasErrorLoading"
-          [alt]="description ? (description | translate) : ''"
-          [src]="safeURL"
-          loading="lazy"
-        />
-        <progress
-          *ngIf="!hadLoadedPreviewMedia && !hasErrorLoading"
-          class="progress progress-success min-w-[10rem] max-w-xs absolute top-2/4 left-1/2 transform -translate-x-1/2"
-        ></progress>
-        <h3 *ngIf="hasErrorLoading">
-          {{ "components-media-error-loading-media" | translate }}
-        </h3>
+      <ng-template #empty>
+        <div
+          class="artboard artboard-horizontal w-full min-h-[12rem] flex justify-center items-center"
+        >
+          <div class="link text-4xl font-medium">
+            <span>
+              {{
+                title
+                  ? (title | translate)
+                  : description
+                    ? (description | translate)
+                    : ""
+              }}
+            </span>
+          </div>
+        </div>
       </ng-template>
     </figure>
     <div

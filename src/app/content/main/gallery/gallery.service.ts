@@ -25,12 +25,13 @@ export class GalleryService {
         directoryUrl: item.directoryUrl,
         directoryTitle: item.directoryTitle,
         directoryDescription: item.directoryDescription,
+        directoryDisplayMedia: item.directoryDisplayMedia ?? true,
         media: item.media.map((media) => {
           return {
             url: media.url,
             title: media.title,
             description: media.description,
-            type: media.type,
+            type: media.type || 'image',
           };
         }),
       };

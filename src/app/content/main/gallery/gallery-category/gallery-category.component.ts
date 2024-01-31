@@ -35,6 +35,7 @@ export class GalleryCategoryComponent implements OnInit {
               title: gallery.directoryTitle,
               description: gallery.directoryDescription,
               url: '',
+              displayMedia: gallery.directoryDisplayMedia,
             },
             content: gallery.media.map((image) => {
               return {
