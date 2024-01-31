@@ -36,66 +36,6 @@ export const PortfolioGallery: GalleryData[] = [
       },
     ],
   },
-
-  {
-    directoryUrl: 'design',
-    directoryTitle: 'Design',
-    directoryDescription: "They don't suck, I swear",
-    media: [
-      {
-        url: '1.png',
-        title: 'This is a good title',
-        description: 'A beautiful landscape with mountains',
-      },
-      {
-        url: '2.png',
-        description: 'A cute kitten playing with a ball of yarn',
-      },
-      {
-        url: '3.png',
-        description: 'A delicious plate of spaghetti carbonara',
-      },
-      {
-        url: '1.png',
-        title: 'This is a good title',
-        description: 'A beautiful landscape with mountains',
-      },
-      {
-        url: '2.png',
-        description: 'A cute kitten playing with a ball of yarn',
-      },
-      {
-        url: '3.png',
-        description: 'A delicious plate of spaghetti carbonara',
-      },
-      {
-        url: '1.png',
-        title: 'This is a good title',
-        description: 'A beautiful landscape with mountains',
-      },
-      {
-        url: '2.png',
-        description: 'A cute kitten playing with a ball of yarn',
-      },
-      {
-        url: '3.png',
-        description: 'A delicious plate of spaghetti carbonara',
-      },
-      {
-        url: '1.png',
-        title: 'This is a good title',
-        description: 'A beautiful landscape with mountains',
-      },
-      {
-        url: '2.png',
-        description: 'A cute kitten playing with a ball of yarn',
-      },
-      {
-        url: '3.png',
-        description: 'A delicious plate of spaghetti carbonara',
-      },
-    ],
-  },
   {
     directoryUrl: '3d',
     directoryTitle: 'Desenhos 3d',
@@ -105,26 +45,6 @@ export const PortfolioGallery: GalleryData[] = [
         url: '1.png',
         title: 'This is a good title',
         description: 'A beautiful landscape with mountains',
-      },
-    ],
-  },
-  {
-    directoryUrl: 'tradicional',
-    directoryTitle: 'Tradicional',
-    directoryDescription: "They don't suck, I swear",
-    media: [
-      {
-        url: '1.png',
-        title: 'This is a good title',
-        description: 'A beautiful landscape with mountains',
-      },
-      {
-        url: '2.png',
-        description: 'A cute kitten playing with a ball of yarn',
-      },
-      {
-        url: '3.png',
-        description: 'A delicious plate of spaghetti carbonara',
       },
     ],
   },
