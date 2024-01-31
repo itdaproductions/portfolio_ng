@@ -1,11 +1,15 @@
 <div class="media-component-wrapper">
   <div
-    [ngClass]="[type === 'image' ? 'min-w-[350px]' : 'min-w-[600px]']"
+    [ngClass]="[
+      type === 'image'
+        ? 'min-w-[100px] md:min-w-[350px]'
+        : 'min-w-[200px] md:min-w-[600px]'
+    ]"
     class="card card-compact max-w-prose bg-base-100 shadow-xl"
   >
     <figure
       (click)="onClickMedia()"
-      class="card card-body cursor-pointer relative min-h-[350px]"
+      class="card card-body cursor-pointer relative"
     >
       <ng-container *ngIf="type === 'video'; else image">
         <iframe
@@ -29,11 +33,12 @@
           class="progress progress-success min-w-[10rem] max-w-xs absolute top-2/4 left-1/2 transform -translate-x-1/2"
         ></progress>
         <h3 *ngIf="hasErrorLoading">
-          {{ "components-media-error-loading-image" | translate }}
+          {{ "components-media-error-loading-media" | translate }}
         </h3>
       </ng-template>
     </figure>
     <div
+      *ngIf="title || description"
       [ngClass]="{
         showBodyOnHover: showBodyOnHover && type === 'image',
         'fade-in': showBodyOnHover

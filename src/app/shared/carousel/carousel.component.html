@@ -1,41 +1,41 @@
 <div class="card">
   <div *ngIf="title" class="card-title p-4">{{ title }}</div>
   <div class="card-body p-4 m-auto max-w-4xl flex">
-    <div class="carousel w-full">
+    <div class="carousel w-[25rem] md:w-full">
       <div
-        id="{{ 'slide' + i }}"
         *ngFor="let review of reviews; let i = index"
         class="carousel-item relative w-full"
+        id="{{ 'slide' + i }}"
       >
         <app-customer-review
-          class="flex justify-center p-10 w-full"
+          [img]="review.img"
           [name]="review.name"
           [quote]="review.quote"
-          [img]="review.img"
+          class="flex justify-center p-10 w-full"
         ></app-customer-review>
         <div
-          class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
           [ngSwitch]="i"
+          class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2"
         >
           <ng-container *ngSwitchCase="0">
             <a
-              href="{{ '#slide' + (reviews.length - 1) }}"
               class="btn btn-circle"
+              href="{{ '#slide' + (reviews.length - 1) }}"
               >❮</a
             >
 
-            <a href="{{ '#slide' + (i + 1) }}" class="btn btn-circle">❯</a>
+            <a class="btn btn-circle" href="{{ '#slide' + (i + 1) }}">❯</a>
           </ng-container>
           <ng-container *ngSwitchCase="reviews.length - 1">
-            <a href="{{ '#slide' + (i - 1) }}" class="btn btn-circle">❮</a>
+            <a class="btn btn-circle" href="{{ '#slide' + (i - 1) }}">❮</a>
 
-            <a href="{{ '#slide' + 0 }}" class="btn btn-circle">❯</a>
+            <a class="btn btn-circle" href="{{ '#slide' + 0 }}">❯</a>
           </ng-container>
 
           <ng-container *ngSwitchDefault>
-            <a href="{{ '#slide' + (i - 1) }}" class="btn btn-circle">❮</a>
+            <a class="btn btn-circle" href="{{ '#slide' + (i - 1) }}">❮</a>
 
-            <a href="{{ '#slide' + (i + 1) }}" class="btn btn-circle">❯</a>
+            <a class="btn btn-circle" href="{{ '#slide' + (i + 1) }}">❯</a>
           </ng-container>
         </div>
       </div>
@@ -43,8 +43,8 @@
     <div class="flex justify-center w-full py-2 gap-2">
       <a
         *ngFor="let review of reviews; let i = index"
-        href="{{ '#slide' + i }}"
         class="btn btn-xs"
+        href="{{ '#slide' + i }}"
       >
         {{ i + 1 }}</a
       >

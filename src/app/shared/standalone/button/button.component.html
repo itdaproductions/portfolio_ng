@@ -1,0 +1,33 @@
+<button
+  [attr.aria-disabled]="disabled ? true : null"
+  [attr.aria-pressed]="active ? true : null"
+  [attr.disabled]="disabled ? true : null"
+  [ngClass]="{
+    btn: true,
+    'btn-neutral': neutral,
+    'btn-primary': primary,
+    'btn-secondary': secondary,
+    'btn-accent': accent,
+    'btn-info': info,
+    'btn-success': success,
+    'btn-warning': warning,
+    'btn-error': error,
+    'btn-ghost': ghost,
+    'btn-link': link,
+    'btn-outline': outline,
+    'btn-active': active,
+    'btn-disabled': disabled,
+    glass: glass,
+    'no-animation': noAnimation,
+    'btn-lg': size === 'lg',
+    'btn-md': size === 'md',
+    'btn-sm': size === 'sm',
+    'btn-xs': size === 'xs',
+    'btn-wide': wide,
+    'btn-block': block,
+    'btn-circle': circle,
+    'btn-square': square
+  }"
+>
+  <ng-content></ng-content>
+</button>

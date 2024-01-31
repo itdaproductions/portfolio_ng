@@ -1,4 +1,4 @@
-<div class="navbar bg-base-100 max-w-7xl m-auto flex-wrap">
+<div class="navbar bg-base-100 max-w-7xl m-auto flex flex-wrap">
   <!-- Settings -->
 
   <!-- Title -->
@@ -78,15 +78,26 @@
         class="dropdown-content menu menu-dropdown p-2 shadow bg-base-100 rounded-box w-52 z-10"
         tabindex="0"
       >
+        <div class="divider">{{ "Languages" }}</div>
         <li>
-          <a (click)="onChangeLanguage('en-EN')" (focus)="onFocus($event)">{{
-            "components-navbar-menu-options-language-en-US" | translate
-          }}</a>
+          <div (click)="onChangeLanguage('en-EN')" class="flex">
+            <div class="badge badge-outline">{{ "en-EN" }}</div>
+            <a (focus)="onFocus($event)">{{
+              "components-navbar-menu-options-language-en-US" | translate
+            }}</a>
+          </div>
         </li>
         <li>
-          <a (click)="onChangeLanguage('pt-PT')" (focus)="onFocus($event)">{{
-            "components-navbar-menu-options-language-pt-PT" | translate
-          }}</a>
+          <div
+            (click)="onChangeLanguage('pt-PT')"
+            class="btn active"
+            class="flex"
+          >
+            <div class="badge badge-outline">{{ "pt-PT" }}</div>
+            <a (focus)="onFocus($event)">{{
+              "components-navbar-menu-options-language-pt-PT" | translate
+            }}</a>
+          </div>
         </li>
       </ul>
     </div>
